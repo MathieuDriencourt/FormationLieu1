@@ -2,6 +2,8 @@ package servlet;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.Formationdao;
 import dao.IFormation;
+import dao.ILieu;
+import dao.Lieudao;
 import model.Formation;
+import model.Lieu;
 
 
 
@@ -34,7 +39,10 @@ public class ajoutfServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		List<Lieu> listefl = new ArrayList<Lieu>();
+		ILieu daol = new Lieudao();
+		listefl = daol.afficheLieux();
+		request.setAttribute("listefl", listefl);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/vues/ajouterf.jsp").forward(request, response);
 	}
 
@@ -45,6 +53,10 @@ public class ajoutfServlet extends HttpServlet {
 		Formation form = new Formation();
 		form.setTheme(request.getParameter("theme"));
 		IFormation dao = new Formationdao();
+		
+		Lieu l = new Lieu();
+		l.setIdLieu(Integer.parseInt(request.getParameter("lieu")));
+		form.setLieu(l);
 		dao.ajoutFormation(form);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/vues/confirmationf.jsp").forward(request, response);
 	}

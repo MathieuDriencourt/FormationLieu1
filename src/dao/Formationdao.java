@@ -56,7 +56,7 @@ public class Formationdao implements IFormation {
 		List<Formation> liste = new ArrayList<Formation>();
 		try {Session s = factory.openSession();
 		s.beginTransaction();
-		Query query = s.createQuery("from Formation where Lieu.idLieu = :idLieu");
+		Query query = s.createQuery("from Formation where lieu.id  = :idLieu");
 		query.setParameter("idLieu", lieu.getIdLieu());
 		liste = query.list();
 		System.out.println("formation par lieux réussie");

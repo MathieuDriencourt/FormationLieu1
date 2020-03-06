@@ -10,6 +10,13 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Lieu {
+@Override
+	public String toString() {
+		return "Lieu [idLieu=" + idLieu + ", ville=" + ville + ", adresse=" + adresse + ", formations=" + formations
+				+ "]";
+	}
+
+
 public Lieu() {
 		super();
 		// TODO Auto-generated constructor stub

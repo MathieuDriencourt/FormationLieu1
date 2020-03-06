@@ -9,6 +9,12 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Formation {
+@Override
+	public String toString() {
+		return "Formation [idformation=" + idformation + ", theme=" + theme + ", lieu=" + lieu + "]";
+	}
+
+
 @Id
 @GeneratedValue
 	private int idformation;

@@ -60,6 +60,8 @@ public class ajoutflServlet extends HttpServlet {
 		l.setIdLieu(Integer.parseInt(request.getParameter("idlieu")));
 		IFormation daof2 = new Formationdao();
 		listef1 = daof2.getFormations(l);
+		System.out.println(listef1);
 		request.setAttribute("listef1", listef1);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/vues/ajouterfl.jsp").forward(request, response);
 	}
 }
